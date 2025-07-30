@@ -1,0 +1,14 @@
+{
+  "usuarioValido": {
+    "nome": "João Silva",
+    "email": "joao.silva@teste.com",
+    "telefone": "(11) 99999-1234",
+    "senha": "minhasenha123"
+  },
+  "usuarioInvalido": {
+    "nome": "Maria Santos",
+    "email": "email-invalido",
+    "telefone": "123456789",
+    "senha": "123"
+  }
+}

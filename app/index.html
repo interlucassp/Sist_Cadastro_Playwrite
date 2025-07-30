@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .message { padding: 10px; margin: 10px 0; border-radius: 4px; display: none; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .loading { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Usuário</h1>
+    
+    <form id="cadastroForm">
+        <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required minlength="6">
+        </div>
+        
+        <button type="submit" id="submitBtn">
+            <span class="loading">Cadastrando...</span>
+            <span class="text">Cadastrar</span>
+        </button>
+    </form>
+    
+    <div id="successMessage" class="message success">
+        Usuário cadastrado com sucesso! Bem-vindo(a) ao sistema.
+    </div>
+    
+    <div id="errorMessage" class="message error">
+        Erro ao cadastrar usuário. Verifique os dados e tente novamente.
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = submitBtn.querySelector('.loading');
+            const text = submitBtn.querySelector('.text');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Simula loading
+            submitBtn.disabled = true;
+            loading.style.display = 'inline';
+            text.style.display = 'none';
+            
+            // Esconde mensagens anteriores
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            setTimeout(() => {
+                const email = document.getElementById('email').value;
+                const senha = document.getElementById('senha').value;
+                
+                // Simula validação - email deve conter @ e senha ter pelo menos 6 caracteres
+                if (email.includes('@') && senha.length >= 6) {
+                    successMsg.style.display = 'block';
+                    document.getElementById('cadastroForm').reset();
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+                
+                // Restaura botão
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+                text.style.display = 'inline';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>`
